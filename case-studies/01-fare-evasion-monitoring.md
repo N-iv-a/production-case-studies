@@ -30,6 +30,12 @@ Three reasons this wasn't a supervised classification problem:
 
 In production, used for real revenue-protection decisions (where to allocate inspection effort). Recognized with a Bronze Award at TTG 2026.
 
+Deployment was not just technical. Adopting the tool required changes in how inspection records were filled in and how inspector resources were allocated, with the control team progressively working closer to what the system suggested. This meant more travel time between assignments, but higher effectiveness at the point of inspection.
+
+Over the period following deployment, sanctions per inspection rose from 0.50 to 0.56 while inspection volume dropped by 19% and inspected passengers by 25%. The overall sanction rate moved from 3.06% to 3.75%. Notably, the rate measured by ticket inspectors declined over the same period, consistent with a deterrence effect on the lines where activity was concentrated.
+
+This is an observational before/after comparison without a control group, and the operational changes came bundled with the tool, so the two cannot be separated. What I can say is that the direction of every indicator is consistent with better targeting rather than more enforcement.
+
 ## What I'd do differently
 
 [TO FILL IN]
