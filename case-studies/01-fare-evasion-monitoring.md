@@ -38,4 +38,14 @@ This is an observational before/after comparison without a control group, and th
 
 ## What I'd do differently
 
-[TO FILL IN]
+The binding constraint is the input data, not the model. Given the data available, the current version is close to what this approach can deliver: some parameters would benefit from further tuning, but the remaining gains sit upstream, not in the modelling.
+
+Passenger counting reliability. Automatic passenger counting is the weakest input. When those counts drift, the model becomes unpredictable, so we constrain it with thresholds and quality checks. That protects the output but also discards a significant share of otherwise usable observations: the system trades coverage for stability. A more reliable counting source would change the design, not just the accuracy.
+
+Onboard validation is structurally incomplete. We built checks on tickets and passes validated onboard, but validation is not mandatory for passengers, so the absence of a validation does not imply the absence of a valid ticket. The signal is directionally useful but weak as evidence, which limits how confidently evasion can be attributed.
+
+Blind spot on app-sold fares. Tickets purchased through the mobile app are not yet ingested into the data platform, so they sit outside the model entirely. This is a data availability gap rather than a modelling choice, and closing it is the single highest-value improvement available.
+
+Measurement design. With hindsight, I would have pushed for a staggered rollout by line, so that lines adopting the system could be compared against lines that had not yet adopted it in the same period. Without that, the effect of the model and the effect of the accompanying process change cannot be separated.
+
+The general lesson: the modelling was the tractable part. What limited the outcome was data coverage, and the fact that some signals are structurally noisy because of how the service operates, not because of how it is measured.
