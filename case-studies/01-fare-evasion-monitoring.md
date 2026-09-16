@@ -6,11 +6,12 @@ Estimate fare-evasion risk per line and per stop, to prioritize where ticket ins
 
 ## Approach
 
-A Bayesian Beta-Binomial update per line/stop cell, with:
+The starting point is a prior derived from an external passenger survey, updated per cell with what inspectors actually observe. Two evasion behaviours with different geography are tracked as separate metrics rather than blended. A Bayesian Beta Binomial update per line/stop cell, with:
 
 - **Exponential decay** on older observations, so the estimate tracks recent behavior instead of being dominated by history.
 - **Multi-level fallback**: a cell with too few observations borrows strength from a broader aggregate (e.g. the line, then the network) instead of returning a wild, low-confidence estimate from three data points.
 - **Verified invariants** on the pipeline output (e.g. posterior parameters stay positive, aggregated risk stays within a sane range) — a monitoring system that silently produces nonsense on bad input is worse than one that fails loudly.
+- **A floor on the effective sample size**, so that a week with few passengers and an anomalous outcome cannot swing the estimate as much as a week with volume. The decay makes old evidence fade; the floor stops the estimate from becoming jumpy once it has faded.
 
 ## Why Bayesian, not a classifier
 
