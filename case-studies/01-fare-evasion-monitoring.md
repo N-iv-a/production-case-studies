@@ -22,7 +22,7 @@ Three reasons this wasn't a supervised classification problem:
 
 ## Trade-offs
 
-- **Batch vs. real-time.** Running as a batch job was the right call here: fare-evasion risk shifts over weeks, not minutes, so there was no case for the operational complexity of a streaming pipeline.
+- **Batch, not streaming.** Batch was the only option on the platform, since real time ingestion is not available there. It would still be my choice: fare evasion risk moves over weeks, not minutes, and a streaming pipeline would add operational cost without changing a single allocation decision.
 - **Granularity.** Line/stop was chosen over finer grain (e.g. line/stop/time-band) because the data gets too sparse below that level for the Bayesian update to say anything useful — a deliberate ceiling on resolution, not a limitation nobody noticed.
 - **Cells with zero observations.** Handled by the fallback hierarchy rather than by imputing a network-wide average directly — this keeps the "we don't really know yet" signal visible instead of hiding it behind a plausible-looking number.
 
@@ -32,7 +32,7 @@ In production, used for real revenue-protection decisions (where to allocate ins
 
 Deployment was not just technical. Adopting the tool required changes in how inspection records were filled in and how inspector resources were allocated, with the control team progressively working closer to what the system suggested. This meant more travel time between assignments, but higher effectiveness at the point of inspection.
 
-Over the period following deployment, sanctions per inspection rose from 0.50 to 0.56 while inspection volume dropped by 19% and inspected passengers by 25%. The overall sanction rate moved from 3.06% to 3.75%. Notably, the rate measured by ticket inspectors declined over the same period, consistent with a deterrence effect on the lines where activity was concentrated.
+Over the period following deployment, sanctions per inspection rose by about 12% while inspection volume dropped by 19% and inspected passengers by 25%. The overall sanction rate rose by roughly a quarter in relative terms. Notably, the rate measured by ticket inspectors declined over the same period, consistent with a deterrence effect on the lines where activity was concentrated.
 
 This is an observational before/after comparison without a control group, and the operational changes came bundled with the tool, so the two cannot be separated. What I can say is that the direction of every indicator is consistent with better targeting rather than more enforcement.
 
@@ -49,3 +49,15 @@ Blind spot on app-sold fares. Tickets purchased through the mobile app are not y
 Measurement design. With hindsight, I would have pushed for a staggered rollout by line, so that lines adopting the system could be compared against lines that had not yet adopted it in the same period. Without that, the effect of the model and the effect of the accompanying process change cannot be separated.
 
 The general lesson: the modelling was the tractable part. What limited the outcome was data coverage, and the fact that some signals are structurally noisy because of how the service operates, not because of how it is measured.
+
+## Attribution
+
+The modelling is mine: the Bayesian Beta Binomial approach, exponential decay, the multi level fallback hierarchy and the handling of cells with no observations, the output invariants, and the decision to expose mean and credible interval rather than a score. Source selection, the onboard validation checks, the data platform pipeline (ingestion, transformations, scheduling, deployment) and the report used by the inspection team are mine.
+
+Shared with the operations and inspection teams: the line/stop granularity, parameter tuning, the quality thresholds on passenger counting data, and the before/after measurement.
+
+The changes to how inspection records are filled in and how inspectors are allocated were designed together and executed by the inspection team. The Transport Ticketing Global 2026 submission and presentation were led by my manager.
+
+## Scope note
+
+No absolute internal figures, table names or model names are published here. They are discussed in interviews.
