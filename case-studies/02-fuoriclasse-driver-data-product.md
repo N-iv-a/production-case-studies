@@ -2,7 +2,7 @@
 
 ## Problem
 
-HR needed a way to evaluate and rank the whole driver population on measurable criteria, feeding the company incentive scheme. Operations area managers needed something different from the same data: a monitoring view per driver, updated daily, to spot patterns (repeated incidents, absences after an incident, behaviour during the probation period) before they became disciplinary cases.
+HR needed a way to evaluate and rank the whole driver population on measurable criteria, feeding the company incentive scheme. Operations area managers needed something different from the same data: a monitoring view per driver, kept up to date, to spot patterns (repeated incidents, absences after an incident, behaviour during the probation period) before they became disciplinary cases.
 
 The raw material was hostile. Attendance came from the HR payroll system with roughly 300 event codes accumulated over years, many overlapping or obsolete. Incidents came as free text notes written by workshop staff and by the driver. Disciplinary records lived in a static file maintained by hand. None of these sources agreed on identifiers, granularity or calendar conventions.
 
@@ -51,11 +51,11 @@ The output is a flag for a human to look at. Every case that matters is reviewed
 
 ### 5. Deliver as a semantic model, not as tables
 
-Everything lands in one Power BI semantic model that serves both audiences. The work that made it usable was unglamorous: relationships between six views (personal data, attendance, sickness and waiting days, service kilometres and hours, incidents with the model's assessment, disciplinary records), measures defined once, fields renamed in business language and organised in folders so that an HR analyst can find "absence days" without knowing which table it comes from.
+Everything lands in one BI semantic model that serves both audiences. The work that made it usable was unglamorous: relationships between six views (personal data, attendance, sickness and waiting days, service kilometres and hours, incidents with the model's assessment, disciplinary records), measures defined once, fields renamed in business language and organised in folders so that an HR analyst can find "absence days" without knowing which table it comes from.
 
-The model refreshes automatically when the daily job completes. HR consumes it from a connected Excel workbook, area managers from a report, management from slides built on the same measures.
+The model refreshes automatically when the scheduled job completes. HR consumes it from a connected spreadsheet, area managers from a report, management from slides built on the same measures.
 
-Rollout was incremental: hands on sessions with HR, a demo per area manager group, a prefilled Excel connected to the model, training on the new disciplinary process, and features released in packages rather than one big launch.
+Rollout was incremental: hands on sessions with HR, a demo per area manager group, a prefilled spreadsheet connected to the model, training on the new disciplinary process, and features released in packages rather than one big launch.
 
 ## Trade offs
 
@@ -74,7 +74,7 @@ Rollout was incremental: hands on sessions with HR, a demo per area manager grou
 
 ## Attribution
 
-The data model, the code classification (with HR), the calculation rules, the ingestion and daily job, the LLM integration, the semantic model and the rollout are my work. The anomaly rule engine (configurable rules producing pending anomalies for review) and the notification layer were built on top of this model by an external partner, without changes to the model itself.
+The data model, the code classification (with HR), the calculation rules, the ingestion and the scheduled job, the LLM integration, the semantic model and the rollout are my work. The anomaly rule engine (configurable rules producing pending anomalies for review) and the notification layer were built on top of this model by an external partner, without changes to the model itself.
 
 ## Scope note
 
