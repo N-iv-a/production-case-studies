@@ -28,7 +28,7 @@ The attribution was verified on the worst possible day: trips with a driver chan
 
 ### 3. Diagnosing the ones that do not match
 
-Over three months of accepted check in validations, 95% got a driver. The remaining 5% were not left as a number: each null was classified by cause.
+Over the evaluation period, 95% of accepted check in validations got a driver. The remaining 5% were not left as a number: each null was classified by cause.
 
 * validation outside the driving window, trip and vehicle correct (about a third; recoverable with a tolerance);
 * trip not present in the AVM feed at all (about a third; only partly recoverable);
