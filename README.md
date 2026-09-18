@@ -2,7 +2,9 @@
 
 Write-ups on data engineering problems I've worked on in the public transport / ticketing domain: production systems, the reasoning behind them, and the trade-offs.
 
-**Scope note:** these are notes about problems and approaches, not case studies of a specific employer's product. No proprietary code, no real data (not even anonymized), no internal table or system names, no client names, no specific model names. If it's not something I'd say out loud in an interview, it's not written here.
+**Scope note:** these are notes about problems and approaches, not case studies of a specific employer's product. 
+No proprietary code, no real data (not even anonymized), no internal table or system names, no client names, no specific model names.
+If it's not something I'd say out loud in an interview, it's not written here.
 
 ## Case studies
 
