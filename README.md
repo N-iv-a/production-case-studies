@@ -13,5 +13,3 @@ Write-ups on data engineering problems I've worked on in the public transport / 
 Internal volumes and metrics are discussed in interviews, not published here.
 
 ---
-
-*Built with AI assistance (Claude); the technical decisions, trade-offs and opinions described are mine.*
